@@ -1,5 +1,6 @@
 package com.hkarabakla.services;
 
+import com.hkarabakla.entities.Author;
 import com.hkarabakla.entities.Book;
 import com.hkarabakla.entities.Category;
 import com.hkarabakla.repositories.CategoryRepo;
@@ -19,16 +20,22 @@ public class CategoryService {
 
     public void categoryOperations() {
 
-        Book b1 = new Book();
-        b1.setIsbn(UUID.randomUUID().toString());
-        b1.setName("Spring in Action");
+        Book book1 = new Book();
+        book1.setIsbn(UUID.randomUUID().toString());
+        book1.setName("Spring in Action");
 
-        Category c1 = new Category();
-        c1.setName("Computer Science");
-        c1.setBooks(Collections.singletonList(b1));
+        Author author1 = new Author();
+        author1.setName("Craig Walls");
 
-        categoryRepo.save(c1);
+        book1.setAuthors(Collections.singleton(author1));
 
-        System.out.println(c1);
+        Category category1 = new Category();
+        category1.setName("Computer Science");
+        category1.setBooks(Collections.singletonList(book1));
+
+        categoryRepo.save(category1);
+
+        System.out.println(category1);
+
     }
 }
